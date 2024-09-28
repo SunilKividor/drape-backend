@@ -21,7 +21,7 @@ func main() {
 	//db server
 	sqlConfig := configs.DBConfig{
 		DBDriver:   "sql",
-		DBServer:   os.Getenv("DBServer"),
+		DBHost:     os.Getenv("DBHost"),
 		DBUser:     os.Getenv("DBUser"),
 		DBPassword: os.Getenv("DBPassword"),
 		DBPort:     os.Getenv("DBPort"),
@@ -30,6 +30,7 @@ func main() {
 	database := database.NewDbServer(sqlConfig)
 	_, err = database.StartDatabase()
 	if err != nil {
+		log.Println("db server error")
 		log.Fatal(err)
 	}
 
