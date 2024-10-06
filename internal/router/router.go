@@ -16,5 +16,6 @@ func Router(router *gin.Engine) {
 	})
 	auth.GET("/google/login", authHandler.OAuthGoogleLogin)
 	auth.GET("/google/callback", authHandler.OAuthGoogleCallback)
-	auth.GET("/success", authHandler.Success)
+
+	router.GET("/home", authHandler.Success)
 }

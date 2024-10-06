@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/SunilKividor/drape/internal/configs"
-	"github.com/SunilKividor/drape/internal/database"
+	"github.com/SunilKividor/drape/internal/repositories"
 	"github.com/SunilKividor/drape/internal/server"
 	"github.com/joho/godotenv"
 )
@@ -20,14 +20,14 @@ func main() {
 
 	//db server
 	sqlConfig := configs.DBConfig{
-		DBDriver:   "sql",
+		DBDriver:   "PostgreSQL",
 		DBHost:     os.Getenv("DBHost"),
 		DBUser:     os.Getenv("DBUser"),
 		DBPassword: os.Getenv("DBPassword"),
 		DBPort:     os.Getenv("DBPort"),
 		DBname:     os.Getenv("DBname"),
 	}
-	database := database.NewDbServer(sqlConfig)
+	database := repositories.NewDbServer(sqlConfig)
 	_, err = database.StartDatabase()
 	if err != nil {
 		log.Println("db server error")
