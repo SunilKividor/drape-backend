@@ -12,16 +12,21 @@ type Config struct {
 }
 
 func NewGoogleConfig() *Config {
-	return &Config{
+	cfg := &Config{
 		GoogleOauthConfig: &oauth2.Config{
-			ClientID:     os.Getenv("GOOGLE_CLIENT_ID"),
-			ClientSecret: os.Getenv("GOOGLE_CLIENT_ID"),
-			Endpoint:     google.Endpoint,
-			RedirectURL:  os.Getenv("GOOGLE_CLIENT_ID"),
+			// ClientID:     os.Getenv("GOOGLE_CLIENT_ID"),
+			// ClientSecret: os.Getenv("GOOGLE_CLIENT_ID"),
+			Endpoint:    google.Endpoint,
+			RedirectURL: os.Getenv("GOOGLE_CLIENT_ID"),
 			Scopes: []string{
 				"https://www.googleapis.com/auth/userinfo.email",
 				"https://www.googleapis.com/auth/userinfo.profile",
 			},
 		},
 	}
+	cfg.GoogleOauthConfig.ClientID = os.Getenv("GOOGLE_CLIENT_ID")
+	cfg.GoogleOauthConfig.ClientSecret = os.Getenv("GOOGLE_CLIENT_SECRET")
+	cfg.GoogleOauthConfig.RedirectURL = os.Getenv("GOOGLE_REDIRECT_URL")
+
+	return cfg
 }
