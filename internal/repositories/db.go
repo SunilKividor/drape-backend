@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/SunilKividor/drape/internal/configs"
+	_ "github.com/lib/pq"
 )
 
 type dbServer struct {
